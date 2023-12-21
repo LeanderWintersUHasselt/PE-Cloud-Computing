@@ -74,13 +74,8 @@ class AuthController extends Controller
 
         // Check if registration was successful
         if ($responseData && $responseData['data']['register']['success']) {
-            // You can add logic here if you need to do anything after successful registration
-            // For example, logging the user in immediately after registration
-
-            // Redirect to the login page or any other appropriate page
             return redirect('/login')->with('success', 'Account created successfully. Please log in.');
         } else {
-            // Redirect back with an error message
             $errorMessage = $responseData['data']['register']['message'] ?? 'Registration failed';
             return redirect('/register')->withErrors(['register' => $errorMessage]);
         }

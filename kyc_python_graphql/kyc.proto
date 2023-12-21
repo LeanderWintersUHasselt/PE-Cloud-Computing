@@ -10,14 +10,10 @@ service KYCService {
 
 // The request message containing user details.
 message KYCRequest {
-  string user_id = 1;
-  string document_id = 2;
-  // Add other required fields...
+  string document_id = 1;
 }
 
 // The response message containing KYC results.
 message KYCResponse {
   bool verified = 1;
-  string message = 2;
-  // Add other response fields...
 }

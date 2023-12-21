@@ -17,4 +17,4 @@ EXPOSE 4004
 ENV NAME World
 
 # Run python script when the container launches
-CMD ["python", "kyc_server.py"]
+CMD ["python", "kyc.py"]

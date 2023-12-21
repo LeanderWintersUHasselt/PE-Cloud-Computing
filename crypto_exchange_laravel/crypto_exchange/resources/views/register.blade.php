@@ -21,6 +21,7 @@
                         <div class="mb-3"><input class="shadow-sm form-control" type="text" name="lastname" placeholder="Last name" required></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password" placeholder="Password" required></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password_confirmation" placeholder="Repeat Password" required></div>
+                        <input type="file" name="document">
                         <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Create account</button></div>
                     </form>
 
