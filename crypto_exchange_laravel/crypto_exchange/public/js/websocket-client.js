@@ -43,4 +43,3 @@ function sendTradeRequest(action) {
         console.log("No amount specified."); // Add this line
     }
 }
-

@@ -50,20 +50,25 @@ class AuthController extends Controller
             'email' => 'required|email',
             'firstname' => 'required',
             'lastname' => 'required',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'document' => 'required'
         ]);
 
-        // Send the request to the GraphQL server
-        $response = Http::post('http://login-reg-graphql-container:4000/graphql', [
-            'query' => "
-                mutation {
-                    register(email: \"{$request->email}\", password: \"{$request->password}\", firstName: \"{$request->firstname}\", lastName: \"{$request->lastname}\") {
-                        success
-                        message
+        if (!checkKYC($request)) {
+            return redirect('/register')->withErrors(['register' => 'KYC failed']);
+        } else {
+            // Send the request to the GraphQL server
+            $response = Http::post('http://login-reg-graphql-container:4000/graphql', [
+                'query' => "
+                    mutation {
+                        register(email: \"{$request->email}\", password: \"{$request->password}\", firstName: \"{$request->firstname}\", lastName: \"{$request->lastname}\") {
+                            success
+                            message
+                        }
                     }
-                }
-            "
-        ]);
+                "
+            ]);
+        }
 
         $responseData = $response->json();
 
@@ -87,4 +92,12 @@ class AuthController extends Controller
         Session::forget('user');
         return redirect('/home');
     }
+
+    public function checkKYC(Request $request)
+    {
+        $fileContent = file_get_contents($request->file('document'));
+        // Call gRPC service here with $fileContent
+        return null;
+    }
+
 }
