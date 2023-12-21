@@ -1,0 +1,5 @@
+mvn clean package
+docker build -t wallet-service .  
+docker stop wallet-java-rest
+docker rm wallet-java-rest                                                 
+docker run -d -p 4003:4003 --network crypto-exchange-network --name wallet-java-rest wallet-service:latest

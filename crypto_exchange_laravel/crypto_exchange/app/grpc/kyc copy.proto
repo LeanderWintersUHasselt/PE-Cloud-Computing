@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package kyc;
+
+service KYCService {
+  rpc CheckDocument (Document) returns (VerificationResponse) {}
+}
+
+message Document {
+  bytes content = 1;
+}
+
+message VerificationResponse {
+  bool isVerified = 2;
+}

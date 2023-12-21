@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package kyc;
+
+// The KYC service definition.
+service KYCService {
+  // Sends a KYC request
+  rpc CheckKYC (KYCRequest) returns (KYCResponse) {}
+}
+
+// The request message containing user details.
+message KYCRequest {
+  string user_id = 1;
+  string document_id = 2;
+  // Add other required fields...
+}
+
+// The response message containing KYC results.
+message KYCResponse {
+  bool verified = 1;
+  string message = 2;
+  // Add other response fields...
+}

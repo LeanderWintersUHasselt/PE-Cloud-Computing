@@ -1,0 +1,22 @@
+version: '3'
+services:
+  laravel-app:
+    # configuration for your Laravel service
+  mysql-db:
+    image: mysql/mysql-server:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: yourpassword
+      # other environment variables
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    # configuration for phpMyAdmin service
+  nodejs-graphql:
+    build:
+      context: ./login:reg_js_graphQL
+    ports:
+      - "4000:4000"
+volumes:
+  mysql_data:

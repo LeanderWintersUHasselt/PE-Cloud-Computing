@@ -1,0 +1,4 @@
+docker build -t login-reg-graphql .
+docker stop login-reg-graphql-container
+docker rm login-reg-graphql-container
+docker run -d -p 4000:4000 --network crypto-exchange-network --name login-reg-graphql-container login-reg-graphql

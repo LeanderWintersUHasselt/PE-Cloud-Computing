@@ -1,0 +1,4 @@
+docker build -t pricealerts .  
+docker stop price_alerts_js_mqtt
+docker rm price_alerts_js_mqtt                                                 
+docker run -d -p 4002:4002 --network crypto-exchange-network --name price_alerts_js_mqtt pricealerts:latest

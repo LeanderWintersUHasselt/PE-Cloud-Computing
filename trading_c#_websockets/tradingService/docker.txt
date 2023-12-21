@@ -1,0 +1,4 @@
+docker build -t tradingserivce .  
+docker stop trading_service_cs_websockets
+docker rm trading_service_cs_websockets                                                 
+docker run -d -p 4001:4001 --network crypto-exchange-network --name trading_service_cs_websockets tradingserivce:latest

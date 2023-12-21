@@ -1,0 +1,6 @@
+com/cloud/config/WebConfig.class
+com/cloud/walletservice/controller/BalanceData.class
+com/cloud/walletservice/controller/WalletService.class
+com/cloud/walletservice/controller/WalletController.class
+com/cloud/App.class
+com/cloud/walletservice/controller/WalletRequest.class
