@@ -40,3 +40,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/register', function () {
     return view('register');
 });
+
+Route::get('/phpinfo', function () {
+    return phpinfo();
+});

@@ -1,0 +1,4 @@
+docker build -t chatbot-go-soap .
+docker stop chatbot-go-soap-container
+docker rm chatbot-go-soap-container
+docker run -d -p 4005:4005 --network crypto-exchange-network --name chatbot-go-soap-container chatbot-go-soap

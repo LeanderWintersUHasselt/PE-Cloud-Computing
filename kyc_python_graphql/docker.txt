@@ -6,4 +6,4 @@ docker rm kyc-python-grpc-container
 docker run -d -p 4004:4004 --network crypto-exchange-network --name kyc-python-grpc-container kyc-python-grpc 
 
 
-protoc --proto_path=/app/grpc --php_out=/app/grpc/generated --grpc_out=/app/grpc/generated --plugin=protoc-gen-grpc=
+protoc --proto_path="/Users/leander/Documents/School/UHasselt/Jaar 2/Cloud Computing/PE/crypto_exchange_laravel/crypto_exchange/app/grpc" --php_out="/Users/leander/Documents/School/UHasselt/Jaar 2/Cloud Computing/PE/crypto_exchange_laravel/crypto_exchange/app/grpc/grpc-generated" --grpc_out="/Users/leander/Documents/School/UHasselt/Jaar 2/Cloud Computing/PE/crypto_exchange_laravel/crypto_exchange/app/grpc/grpc-generated" --plugin=protoc-gen-grpc="/Users/leander/Documents/php_grpc_plugin/grpc/cmake/build/grpc_php_plugin" "/Users/leander/Documents/School/UHasselt/Jaar 2/Cloud Computing/PE/crypto_exchange_laravel/crypto_exchange/app/grpc/kyc.proto"

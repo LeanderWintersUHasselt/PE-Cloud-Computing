@@ -2,15 +2,17 @@ from concurrent import futures
 import grpc
 import kyc_pb2_grpc
 import kyc_pb2
+import logging
 
 class KYCService(kyc_pb2_grpc.KYCServiceServicer):
 
-    def CheckDocument(self, request, context):
-        content = request.content.decode('utf-8')
+    def CheckKYC(self, request, context):
+        content = request.document_content.lower()
+        logging.info("Received document content: %s", content)
         if "approved" in content:
-            return kyc_pb2.VerificationResponse(verified=True)
+            return kyc_pb2.KYCResponse(verified=True)
         else:
-            return kyc_pb2.VerificationResponse(veriefied=False)
+            return kyc_pb2.KYCResponse(verified=False)
 
 
 def serve():

@@ -4,24 +4,30 @@
 
 <section class="py-4 py-md-5 my-5">
         <div class="container py-md-5">
-        @if (Session::has('error'))
-            <div class="alert alert-danger">
-                {{ Session::get('error') }}
-            </div>
-        @endif
+            @if (session('debug'))
+                <div class="alert alert-warning">
+                    {{ session('debug') }}
+                </div>
+            @endif
+
+            @if (session('grpcResponse'))
+                <div class="alert alert-info">
+                    {{ session('grpcResponse') }}
+                </div>
+            @endif
 
             <div class="row">
                 <div class="col-md-6 text-center"><img class="img-fluid w-100" src="assets/img/illustrations/register.svg"></div>
                 <div class="col-md-5 col-xl-4 text-center text-md-start">
                     <h2 class="display-6 fw-bold mb-5"><span class="underline pb-1"><strong>Sign up</strong></span></h2>
-                    <form method="post" action="{{ url('/register') }}" data-bs-theme="light">
+                    <form method="post" enctype="multipart/form-data" data-bs-theme="light">
                         @csrf
                         <div class="mb-3"><input class="shadow-sm form-control" type="email" name="email" placeholder="Email" required></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="text" name="firstname" placeholder="First name" required></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="text" name="lastname" placeholder="Last name" required></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password" placeholder="Password" required></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password_confirmation" placeholder="Repeat Password" required></div>
-                        <input type="file" name="document">
+                        <input class="mb-3" type="file" name="document">
                         <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Create account</button></div>
                     </form>
 
