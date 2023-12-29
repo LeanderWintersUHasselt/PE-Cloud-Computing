@@ -2,7 +2,7 @@ package com.cloud.walletservice.controller;
 
 public class WalletRequest {
     private int userId;
-    private int amount;
+    private double amount;
 
     // Getters and Setters
     public int getUserId() {
@@ -13,7 +13,7 @@ public class WalletRequest {
         this.userId = userId;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 

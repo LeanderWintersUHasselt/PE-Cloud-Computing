@@ -141,8 +141,11 @@ const resolvers = {
         updateEuroBalance: async (_, { userId, amount }) => {
             try {
                 // Fetch the current euro balance for the user
+                console.log('Updating balance for user:', userId, " with amount:", amount);
+
                 const [users] = await db.query('SELECT eur_balance FROM customers WHERE id = ?', [userId]);
                 if (users.length === 0) {
+                    console.log('User not found');
                     return {
                         success: false,
                         message: 'User not found',
@@ -178,8 +181,35 @@ const resolvers = {
                 };
             }
         },
+        updateCoinBalance: async (_, { userId, amount, coin }) => {
+            try {
+                const balanceColumn = coin === 'BTC' ? 'btc_balance' : 'eth_balance';
+                
+                // Fetch the current balance for the user and specific coin
+                const [users] = await db.query(`SELECT ${balanceColumn} FROM customers WHERE id = ?`, [userId]);
+                if (users.length === 0) {
+                    return { success: false, message: 'User not found' };
+                }
         
+                let currentBalance = users[0][balanceColumn];
         
+                // Calculate the new balance
+                let newBalance = currentBalance + amount;
+        
+                // Check for insufficient funds in case of a sell trade
+                if (amount < 0 && currentBalance < Math.abs(amount)) {
+                    return { success: false, message: 'Insufficient funds for this transaction' };
+                }
+
+                // Update the balance in the database
+                await db.query(`UPDATE customers SET ${balanceColumn} = ? WHERE id = ?`, [newBalance, userId]);
+        
+                return { success: true, message: 'Balance updated successfully' };
+            } catch (error) {
+                console.error('Error updating balance:', error);
+                return { success: false, message: 'Error updating balance' };
+            }
+        },
     }
 };
 

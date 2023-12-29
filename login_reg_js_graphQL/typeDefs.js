@@ -7,12 +7,18 @@ const typeDefs = gql`
     getUserBalances(userId: Int!): UserBalances
   }
 
+  enum CoinType {
+    BTC
+    ETH
+  }
+
   type Mutation {
     login(email: String!, password: String!): LoginResponse
     register(email: String!, password: String!, firstName: String!, lastName: String!): RegisterResponse
     createAlert(alertId: String!, message: String!): AlertResponse
     deleteAlertsByIds(ids: [String]!): DeleteResponse
     updateEuroBalance(userId: Int!, amount: Float!): BalanceUpdateResponse
+    updateCoinBalance(userId: Int!, amount: Float!, coin: CoinType!): BalanceUpdateResponse
   }
 
   type Alert {

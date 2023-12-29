@@ -115,7 +115,7 @@ class AuthController extends Controller
             list($response, $status) = $client->CheckKYC($grpcRequest)->wait();
             Session::flash('debug', 'gRPC call made'); // Debug statement
     
-            if ($status->code !== \grpc\STATUS_OK) {
+            if ($status->code !== \Grpc\STATUS_OK) {
                 Session::flash('grpcResponse', 'gRPC Error: ' . $status->details);
                 return false;
             }

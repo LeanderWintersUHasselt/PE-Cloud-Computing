@@ -28,6 +28,7 @@ function sendWalletRequest(actionType) {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
+        fetchAndDisplayBalances(); // Fetch and display updated balances
         responseMessageDiv.innerText = data.message; // Display message from the server
     })
     .catch((error) => {
@@ -41,9 +42,9 @@ function fetchAndDisplayBalances() {
         .then(response => response.json())
         .then(data => {
             if (data && 'eur' in data && 'btc' in data && 'eth' in data) {
-                document.getElementById('eurBalance').innerText = `EUR: ${data.eur}`;
-                document.getElementById('btcBalance').innerText = `BTC: ${data.btc}`;
-                document.getElementById('ethBalance').innerText = `ETH: ${data.eth}`;
+                document.getElementById('eurBalance').innerText = `${Math.round(data.eur, 2)}`;
+                document.getElementById('btcBalance').innerText = `${Math.round(data.btc, 2)}`;
+                document.getElementById('ethBalance').innerText = `${Math.round(data.eth, 2)}`;
             } else {
                 console.error('Invalid data received', data);
                 // Handle the error case

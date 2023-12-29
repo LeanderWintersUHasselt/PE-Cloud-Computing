@@ -29,7 +29,9 @@ public class WalletController {
     @PostMapping("/deposit")
     public ResponseEntity<?> deposit(@RequestBody WalletRequest request) {
         try {
+            System.out.println("Deposit Request: UserID = " + request.getUserId() + ", Amount = " + request.getAmount());
             String responseMessage = walletService.deposit(request.getUserId(), request.getAmount());
+            System.out.println(responseMessage);
             return ResponseEntity.ok(responseMessage);
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Error processing deposit");
@@ -39,6 +41,7 @@ public class WalletController {
     @PostMapping("/withdraw")
     public ResponseEntity<?> withdraw(@RequestBody WalletRequest request) {
         try {
+            System.out.println("Withdraw Request: UserID = " + request.getUserId() + ", Amount = " + request.getAmount());
             String responseMessage = walletService.withdraw(request.getUserId(), request.getAmount());
             return ResponseEntity.ok(responseMessage);
         } catch (IOException e) {

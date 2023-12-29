@@ -35,11 +35,12 @@ function openWebSocket() {
 function sendTradeRequest(action) {
     const amount = document.getElementById('amount').value;
     const coin = document.getElementById('coin').value;
+    const userId = 1; // TODO: Get user ID from session
     if (amount && coin) {
-        const message = JSON.stringify({ action: action, amount: amount, coin: coin });
-        console.log("Sending message:", message); // Add this line
+        const message = JSON.stringify({ action: action, amount: amount, coin: coin, userId: userId });
+        console.log("Sending message:", message);
         ws.send(message);
     } else {
-        console.log("No amount specified."); // Add this line
+        console.log("No amount specified.");
     }
 }

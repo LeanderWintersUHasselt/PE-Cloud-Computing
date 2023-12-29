@@ -25,17 +25,17 @@ public class WalletService {
         return parseBalanceData(jsonResponse);
     }
 
-    public String deposit(int userId, int amount) throws IOException {
+    public String deposit(int userId, double amount) throws IOException {
         String mutation = String.format(
-            "{\"query\":\"mutation { updateEuroBalance(userId: %d, amount: %d) { success message } }\"}", 
+            "{\"query\":\"mutation { updateEuroBalance(userId: %d, amount: %f) { success message } }\"}", 
             userId, amount);
         
         return executeGraphQLRequest(mutation);
     }
     
-    public String withdraw(int userId, int amount) throws IOException {
+    public String withdraw(int userId, double amount) throws IOException {
         String mutation = String.format(
-            "{\"query\":\"mutation { updateEuroBalance(userId: %d, amount: %d) { success message } }\"}", 
+            "{\"query\":\"mutation { updateEuroBalance(userId: %d, amount: %f) { success message } }\"}", 
             userId, -amount); // Negate the amount for withdrawal
         return executeGraphQLRequest(mutation);
     }    
@@ -47,11 +47,13 @@ public class WalletService {
                 .url(GRAPHQL_ENDPOINT)
                 .post(body)
                 .build();
-
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            String responseBody = response.body().string();
+            System.out.println(responseBody);
+            return responseBody;
         }
     }
+    
 
     private BalanceData parseBalanceData(String jsonResponse) throws IOException {
         JsonNode rootNode = objectMapper.readTree(jsonResponse);

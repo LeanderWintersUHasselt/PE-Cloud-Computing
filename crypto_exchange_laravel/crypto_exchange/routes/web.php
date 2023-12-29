@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PriceAlertController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\ChatbotController;
 
 // Routes that need authentication
 Route::middleware(['checkUserSession'])->group(function () {
@@ -23,6 +24,11 @@ Route::middleware(['checkUserSession'])->group(function () {
     });
 
     Route::get('/api/wallet/balance', [WalletController::class, 'getBalances']);
+
+    Route::post('api/contact/send', [ChatbotController::class, 'sendMessage']);
+    Route::get('/contact', function () {
+        return view('contact');
+    });
 });
 
 // Routes that do not need authentication
