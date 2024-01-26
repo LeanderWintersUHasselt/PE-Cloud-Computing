@@ -11,21 +11,21 @@
                 </div>
             </div>
             <div class="row gy-4 gy-md-0">
-                <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">    
-                <div style="max-width: 350px;">
-                        <p class="text-muted my-4">Tincidunt laoreet leo, adipiscing taciti tempor. Primis senectus sapien, risus donec ad fusce augue interdum.</p>
-                        <input type="number" id="amount" class="form-control" placeholder="Amount">
-                        <select name="coin" id="coin">
-                                <option value="BTC">BTC</option>
-                                <option value="ETH">ETH</option>
-                        </select>
-                        <a class="btn btn-primary btn-lg me-2" role="button" onclick="sendTradeRequest('BUY')">BUY</a>
-                        <a class="btn btn-primary btn-lg me-2" role="button" onclick="sendTradeRequest('SELL')">SELL</a>
-                        <div id="responseMessage"></div>
+                <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-md-start">    
+                    <div style="max-width: 350px;">
+                            <p class="text-muted my-4">Tincidunt laoreet leo, adipiscing taciti tempor. Primis senectus sapien, risus donec ad fusce augue interdum.</p>
+                            <input type="number" id="amount" class="form-control" placeholder="Amount">
+                            <select name="coin" id="coin">
+                                    <option value="BTC">BTC</option>
+                                    <option value="ETH">ETH</option>
+                            </select>
+                            <a class="btn btn-primary btn-lg me-2" role="button" onclick="sendTradeRequest('BUY')">BUY</a>
+                            <a class="btn btn-primary btn-lg me-2" role="button" onclick="sendTradeRequest('SELL')">SELL</a>
+                            <div id="responseMessage"></div>
+                        </div>
                     </div>
-                </div>
                 <div class="col-md-6">
-                    HERE GOES A GRAPH
+                    <div class="btcwdgt-chart"></div>
                 </div>
             </div>
         </div>
@@ -35,5 +35,6 @@
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('js/startup-modern.js') }}"></script>
     <script src="{{ asset('js/websocket-client.js') }}"></script> 
+    <script src="{{ asset('js/widget.js') }}"></script> 
 
 @stop

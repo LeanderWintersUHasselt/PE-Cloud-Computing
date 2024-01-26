@@ -5,9 +5,8 @@ const axios = require('axios');
 const mqttClient = mqtt.connect('mqtt://mosquitto-broker');
 const btcPriceTopic = 'btc-price-alert';
 const userAlertsTopic = 'user-price-alerts';
-const sentAlerts = new Set(); // Set to track sent alert IDs
+const sentAlerts = new Set();
 
-// Structure to store user-set price points
 let userPriceAlerts = {}; // { 'alertId': { coin: 'BTC', pricePoint: value }, ... }
 const priceTolerance = 50;
 
@@ -24,7 +23,7 @@ async function checkPriceAndAlert() {
             });
             
             mqttClient.publish(btcPriceTopic, alertMessage);
-            sentAlerts.add(alertId); // Mark this alert as sent
+            sentAlerts.add(alertId); // Mark alert as sent
         }
     }
 }
@@ -69,7 +68,7 @@ mqttClient.on('message', (topic, message) => {
     if (topic === userAlertsTopic) {
         try {
             const alertRequest = JSON.parse(message.toString());
-            // Store coin type and price point
+            // Store coin type and price
             userPriceAlerts[alertRequest.alertId] = { 
                 coin: alertRequest.coin, 
                 price: alertRequest.price 

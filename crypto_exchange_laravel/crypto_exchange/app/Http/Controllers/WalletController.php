@@ -10,13 +10,13 @@ class WalletController extends Controller
     {
         $actionType = $request->input('action');
         $amount = $request->input('amount');
-        //$userId = session('user')['id'];
+        //$userId = session('user')['id']; TODO
         $userId = 1;
 
         // URL of the Java microservice endpoint
         $url = 'http://wallet-java-rest:4003/api/wallet/' . strtolower($actionType);
 
-        // Send a request to the Java microservice
+        // Send a request to the Java serivce
         $response = Http::post($url, [
             'userId' => $userId,
             'amount' => $amount
@@ -35,7 +35,7 @@ class WalletController extends Controller
     }
 
     public function getBalances() {
-        //$userId = session('user')['id'];
+        //$userId = session('user')['id']; TODO
         $userId = 1;
 
         // URL of the Java microservice endpoint

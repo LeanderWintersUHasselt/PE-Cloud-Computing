@@ -27,7 +27,7 @@ class PriceAlertController extends Controller
     
         // Initialize the MQTT client
         $mqtt = new MqttClient('mosquitto-broker', 1883, 'laravel-publisher');
-        $connectionSettings = new ConnectionSettings(); // Adjust settings if needed
+        $connectionSettings = new ConnectionSettings();
     
         // Connect and publish the alert data
         $mqtt->connect($connectionSettings, true);
@@ -35,13 +35,18 @@ class PriceAlertController extends Controller
         $mqtt->disconnect();
     
         // Return a successful response
-        session()->push('user_alerts', $alertId);
+        session()->push('user_alerts', [
+            'alertId' => $alertId,
+            'coin' => $coin,
+            'price' => $price
+        ]);
         return response()->json(['message' => 'Alert sent successfully']);
     }
 
     public function checkAlerts()
     {
-        $alertIds = session('user_alerts', []);
+        $sessionAlerts = session('user_alerts', []);
+        $alertIds = array_column($sessionAlerts, 'alertId');
         $alertIdsString = '"' . implode('", "', $alertIds) . '"';
         
         // GraphQL query to get all matching alerts

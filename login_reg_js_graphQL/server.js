@@ -11,8 +11,8 @@ app.use(cors());
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: true, // Enables introspection of the schema
-    playground: true    // Enables the GraphQL Playground
+    introspection: true,
+    playground: true
   });
 
   

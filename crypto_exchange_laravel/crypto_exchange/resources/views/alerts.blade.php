@@ -25,6 +25,12 @@
                         <div id="responseMessage"></div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="alert-list">
+                        <h3>Active Alerts</h3>
+                        <ul id="alertList"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -32,5 +38,11 @@
 </body>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('js/startup-modern.js') }}"></script>
+    <script src="{{ URL::asset('js/active-alerts-list.js') }}"></script>
+    <script type="text/javascript">
+        var activeAlerts = @json(session('user_alerts', []));
+    </script>
+
+
 
 @stop

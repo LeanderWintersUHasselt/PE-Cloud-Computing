@@ -4,13 +4,10 @@ function sendWalletRequest(actionType) {
     const amount = document.getElementById('amount').value;
     const responseMessageDiv = document.getElementById('responseMessage');
 
-    // Validation
     if (!amount) {
         responseMessageDiv.innerText = 'Please enter an amount.';
         return;
     }
-
-    // Prepare data to send
     const requestData = {
         action: actionType,
         amount: amount
@@ -28,8 +25,8 @@ function sendWalletRequest(actionType) {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        fetchAndDisplayBalances(); // Fetch and display updated balances
-        responseMessageDiv.innerText = data.message; // Display message from the server
+        fetchAndDisplayBalances();
+        responseMessageDiv.innerText = data.message;
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -42,9 +39,14 @@ function fetchAndDisplayBalances() {
         .then(response => response.json())
         .then(data => {
             if (data && 'eur' in data && 'btc' in data && 'eth' in data) {
-                document.getElementById('eurBalance').innerText = `${Math.round(data.eur, 2)}`;
-                document.getElementById('btcBalance').innerText = `${Math.round(data.btc, 2)}`;
-                document.getElementById('ethBalance').innerText = `${Math.round(data.eth, 2)}`;
+                const eurFormatter = new Intl.NumberFormat('nl-NL', {
+                    style: 'currency',
+                    currency: 'EUR'
+                });
+
+                document.getElementById('eurBalance').innerText = eurFormatter.format(data.eur);
+                document.getElementById('btcBalance').innerText = Number(data.btc).toFixed(2);
+                document.getElementById('ethBalance').innerText = Number(data.eth).toFixed(2);
             } else {
                 console.error('Invalid data received', data);
                 // Handle the error case

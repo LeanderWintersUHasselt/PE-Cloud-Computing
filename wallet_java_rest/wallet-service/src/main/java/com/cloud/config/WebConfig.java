@@ -1,4 +1,4 @@
-package com.cloud.config; // or com.cloud, depending on your choice
+package com.cloud.config; 
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

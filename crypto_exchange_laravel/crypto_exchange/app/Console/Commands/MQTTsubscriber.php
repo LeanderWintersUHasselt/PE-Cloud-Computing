@@ -29,7 +29,7 @@ class MQTTSubscriber extends Command
     public function handle()
     {
         $mqtt = new MqttClient('mosquitto-broker', 1883, 'laravel-subscriber');
-        $connectionSettings = new ConnectionSettings(); // Adjust settings as needed
+        $connectionSettings = new ConnectionSettings();
 
         $this->info("Attempting to connect to MQTT broker...");
         $mqtt->connect($connectionSettings, true);
@@ -51,8 +51,6 @@ class MQTTSubscriber extends Command
     protected function handleIncomingMessage(string $topic, string $message)
     {
         $this->info("Received raw message on topic [$topic]: $message");
-    
-        // Decode the JSON message
         $alertData = json_decode($message, true);
     
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -62,7 +60,6 @@ class MQTTSubscriber extends Command
     
         $this->info("Decoded JSON: " . print_r($alertData, true));
     
-        // Process the alert data
         $alertId = $alertData['alertId'] ?? '';
         $message = $alertData['message'] ?? '';
     

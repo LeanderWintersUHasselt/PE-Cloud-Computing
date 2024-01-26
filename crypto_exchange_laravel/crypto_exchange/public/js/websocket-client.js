@@ -28,7 +28,7 @@ function openWebSocket() {
     };
 
     window.addEventListener("beforeunload", function() {
-        ws.close(); // Close WebSocket connection when leaving the page
+        ws.close();
     });
 }
 

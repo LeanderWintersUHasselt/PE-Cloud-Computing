@@ -15,7 +15,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         // Send the request to the GraphQL server
-
         // TODO return userID
         $response = Http::post('http://login-reg-graphql-container:4000/graphql', [
             'query' => "
@@ -49,7 +48,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // Validation for request data can be added here
         \Log::info($request->all());
 
         $validatedData = $request->validate([

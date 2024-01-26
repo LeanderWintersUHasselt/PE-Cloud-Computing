@@ -4,23 +4,21 @@ const chatbox = document.querySelector(".chatbox");
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
-let userMessage = null; // Variable to store user's message
+let userMessage = null;
 const inputInitHeight = chatInput.scrollHeight;
 
 const createChatLi = (message, className) => {
-    // Create a chat <li> element with passed message and className
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", `${className}`);
     let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
     chatLi.innerHTML = chatContent;
     chatLi.querySelector("p").textContent = message;
-    return chatLi; // return chat <li> element
+    return chatLi;
 }
 
 const generateResponse = (chatElement) => {
     const messageElement = chatElement.querySelector("p");
 
-    // Define the properties and message for the API request
     const requestOptions = {
         method: "POST",
         headers: {
@@ -34,7 +32,6 @@ const generateResponse = (chatElement) => {
 
     // Send POST request to Laravel API, get response and set the response as paragraph text
     fetch('/api/contact/send', requestOptions).then(res => res.json()).then(data => {
-        // Assuming the response from Laravel is plain text
         messageElement.textContent = data.message;
     }).catch(() => {
         messageElement.classList.add("error");
@@ -44,7 +41,7 @@ const generateResponse = (chatElement) => {
 
 
 const handleChat = () => {
-    userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+    userMessage = chatInput.value.trim(); // Remove extra whitespace
     if(!userMessage) return;
 
     // Clear the input textarea and set its height to default

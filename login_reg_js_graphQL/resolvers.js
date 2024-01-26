@@ -21,7 +21,7 @@ const resolvers = {
                 
                 // Check if user balance data was found
                 if (userBalances.length === 0) {
-                    return null; // No user balance data found
+                    return null;
                 }
         
                 // Return the balance data
@@ -216,19 +216,13 @@ const resolvers = {
 const SECRET_KEY = 'test-token';
 
 function generateToken(user) {
-    // Payload data you want to include in the token (e.g., user ID)
     const payload = {
         id: user.id,
         email: user.email
-        // You can add more user details here if needed
     };
 
-    // Token expiration time (e.g., 1 hour)
     const expiresIn = '10m';
-
-    // Generating the token
     return jwt.sign(payload, SECRET_KEY, { expiresIn: expiresIn });
 }
-// You may need to implement or import a function like generateToken here
 
 module.exports = resolvers;

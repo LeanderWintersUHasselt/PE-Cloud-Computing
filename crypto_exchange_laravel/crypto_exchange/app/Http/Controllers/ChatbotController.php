@@ -30,7 +30,6 @@ class ChatbotController extends Controller
         $responseBody = $response->body();
 
         // Parse the SOAP XML response to get the chatbot's message
-        // This depends on the structure of the SOAP response
         $chatbotMessage = $this->parseChatbotResponse($responseBody);
 
         return response()->json([
