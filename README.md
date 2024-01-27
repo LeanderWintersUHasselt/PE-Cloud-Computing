@@ -4,7 +4,7 @@
 ## This project is made up of a PHP front and back-end using the Laravel framework along with 6 different microservices that provide basic functionality.
 
 ### How to start? (run commands in root folder of each service)
-PHP - Laravel:
+### PHP - Laravel:
 ```
 ./vendor/bin/sail build
 ./vendor/bin/sail up
@@ -48,7 +48,7 @@ docker build -t wallet-service .
 docker run -d -p 4003:4003 --network crypto-exchange-network --name wallet-java-rest wallet-service:latest
 ```
 
-MQTT Broker:                                           
+### MQTT Broker:                                           
 ```
 docker run -d --name mosquitto-broker -p 1883:1883 --network crypto-exchange-network -v "$(pwd)/mosquitto.conf:/mosquitto/config/mosquitto.conf" eclipse-mosquitto
 ```
