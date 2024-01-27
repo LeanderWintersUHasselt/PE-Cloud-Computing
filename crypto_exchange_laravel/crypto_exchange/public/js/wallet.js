@@ -13,7 +13,6 @@ function sendWalletRequest(actionType) {
         amount: amount
     };
 
-    // Send data to Laravel backend
     fetch('/api/wallet/action', {
         method: 'POST',
         headers: {
@@ -49,11 +48,9 @@ function fetchAndDisplayBalances() {
                 document.getElementById('ethBalance').innerText = Number(data.eth).toFixed(2);
             } else {
                 console.error('Invalid data received', data);
-                // Handle the error case
             }
         })
         .catch(error => {
             console.error('Error fetching balances:', error);
-            // Handle the error case
         });
 }

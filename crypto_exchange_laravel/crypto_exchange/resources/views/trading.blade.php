@@ -35,6 +35,10 @@
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('js/startup-modern.js') }}"></script>
     <script src="{{ asset('js/websocket-client.js') }}"></script> 
+    <script type="text/javascript">
+        var userData = @json(session('user', []));
+        window.userId = userData.userId;
+    </script>
     <script src="{{ asset('js/widget.js') }}"></script> 
 
 @stop

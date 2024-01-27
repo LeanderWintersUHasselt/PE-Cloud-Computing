@@ -15,13 +15,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         // Send the request to the GraphQL server
-        // TODO return userID
         $response = Http::post('http://login-reg-graphql-container:4000/graphql', [
             'query' => "
                 mutation {
                     login(email: \"{$request->email}\", password: \"{$request->password}\") {
                         success
                         message
+                        userId
                     }
                 }
             "

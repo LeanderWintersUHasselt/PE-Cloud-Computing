@@ -10,8 +10,7 @@ class WalletController extends Controller
     {
         $actionType = $request->input('action');
         $amount = $request->input('amount');
-        //$userId = session('user')['id']; TODO
-        $userId = 1;
+        $userId = session('user')['userId'];
 
         // URL of the Java microservice endpoint
         $url = 'http://wallet-java-rest:4003/api/wallet/' . strtolower($actionType);
@@ -35,8 +34,7 @@ class WalletController extends Controller
     }
 
     public function getBalances() {
-        //$userId = session('user')['id']; TODO
-        $userId = 1;
+        $userId = session('user')['userId'];
 
         // URL of the Java microservice endpoint
         $url = 'http://wallet-java-rest:4003/api/wallet/balance';

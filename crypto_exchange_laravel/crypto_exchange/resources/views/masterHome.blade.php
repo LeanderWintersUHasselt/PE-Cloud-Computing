@@ -56,7 +56,7 @@
             <div class="container py-4 py-lg-5">
                 <hr>
                 <div class="text-muted d-flex justify-content-between align-items-center pt-3">
-                    <p class="mb-0">Copyright © 2023 Leander Winters</p>
+                    <p class="mb-0">2023/2024 Leander Winters</p>
                 </div>
             </div>
     </footer>
